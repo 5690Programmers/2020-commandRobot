@@ -57,7 +57,6 @@ RobotContainer::RobotContainer() {
   m_shooter.SetDefaultCommand(ShooterStop(&m_shooter));
 }
 
-// rumble when shooting too close
 // will need SelectCommand at some point:
 // https://github.com/wpilibsuite/allwpilib/tree/master/wpilibcExamples/src/main/cpp/examples/SelectCommand
 

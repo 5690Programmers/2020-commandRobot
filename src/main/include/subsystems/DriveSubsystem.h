@@ -106,9 +106,17 @@ class DriveSubsystem : public frc2::SubsystemBase {
  /**
    * Returns the ultrasonic sensor's distance
    *
-   * @return The rage from the ultrasonic sensor, in inches
+   * @return The range from the ultrasonic sensor, in inches
    */
   double GetDistance();
+
+  
+ /**
+   * make sure target angle is in the right range
+   *
+   * @return The angle to turn to, put into -180,180 degrees
+   */
+  units::degree_t SanitizeAngle(units::degree_t target);
 
   private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -141,5 +149,4 @@ class DriveSubsystem : public frc2::SubsystemBase {
   int tv = 0;               // does the limelight have a target?
   // pointer to network tables for limelight stuff
   std::shared_ptr<NetworkTable> table;
-
 };

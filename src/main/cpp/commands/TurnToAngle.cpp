@@ -19,7 +19,7 @@ TurnToAngle::TurnToAngle(units::degree_t target, DriveSubsystem* drive)
                     // Close loop on heading
                     [drive] { return drive->GetHeading().to<double>(); },
                     // Set reference to target.  Make sure it fits in -180,180
-                    std::remainder(target.to<double>(), 180.0),
+                    drive->SanitizeAngle(target).to<double>(),
                     // Pipe output to turn robot
                     [drive](double output) { drive->ArcadeDrive(0, output); },
                     // Require the drive

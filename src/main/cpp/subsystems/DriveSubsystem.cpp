@@ -74,8 +74,7 @@ void DriveSubsystem::SetMaxOutput(double maxOutput) {
 
 units::degree_t DriveSubsystem::GetHeading() {
   // make sure it fits in +/- 180.  Yaw does this, so should be ok.
-  return units::degree_t(std::remainder(gyroAngle, 180.0) *
-                         (kGyroReversed ? -1.0 : 1.0));
+  return units::degree_t((gyroAngle) * (kGyroReversed ? -1.0 : 1.0));
 }
 
 double DriveSubsystem::GetTurnRate() {
@@ -87,13 +86,11 @@ double DriveSubsystem::GetTurnRate() {
   // give a number if we have a target, else just return where we're already heading
   // could change this to turn and seek a target
   if (tv) {
-    units::degree_t(std::remainder((gyroAngle+tx), 360) *
-                         (kGyroReversed ? -1.0 : 1.0));
+    units::degree_t((gyroAngle+tx) * (kGyroReversed ? -1.0 : 1.0));
   } else {
-    units::degree_t(std::remainder(gyroAngle, 360) *
-                         (kGyroReversed ? -1.0 : 1.0));
+    units::degree_t((gyroAngle) * (kGyroReversed ? -1.0 : 1.0));
   }
-  return target;
+  return target; 
 }
 
 void DriveSubsystem::SelectLimelightPipeline(int pipeline){
@@ -103,4 +100,11 @@ void DriveSubsystem::SelectLimelightPipeline(int pipeline){
 
 double DriveSubsystem::GetDistance() {
   return Distance;
+}
+
+units::degree_t DriveSubsystem::SanitizeAngle(units::degree_t target){
+  units::degree_t cleanedAngle = target;
+  if ( cleanedAngle >= 180_deg) cleanedAngle -= 360_deg;
+  if ( cleanedAngle <= -180_deg) cleanedAngle += 360_deg;
+  return cleanedAngle;
 }
