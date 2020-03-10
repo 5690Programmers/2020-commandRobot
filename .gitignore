@@ -357,3 +357,5 @@ MigrationBackup/
 *.bin
 build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt
 build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt
+*.lock
+*.bin

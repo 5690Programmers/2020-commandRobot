@@ -44,8 +44,8 @@ class RobotContainer {
   ShooterSubsystem m_shooter;
   
   // The auto routines
-  LeftAuto m_leftAuto{&m_drive};  // add in whichever subsystems you use in this call list
-  RightAuto m_rightAuto{&m_drive};
+  LeftAuto m_leftAuto{&m_drive, &m_shooter, &m_indexer};  // add in whichever subsystems you use in this call list
+  RightAuto m_rightAuto{&m_drive, &m_shooter, &m_indexer};
 
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;

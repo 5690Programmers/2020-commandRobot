@@ -10,9 +10,13 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/ParallelCommandGroup.h>
 
 #include "commands/TurnToAngle.h"
 #include "commands/DriveStraight.h"
+#include "commands/SetLimelightPipeline.h"
+#include "commands/ShooterShoot.h"
+#include "commands/IndexerForward.h"
 
 /**
  * An auto for starting on the left
@@ -25,7 +29,7 @@ class LeftAuto
    *
    * @param drive The drive subsystem this command will run on
    */
-  LeftAuto(DriveSubsystem* drive);
+  LeftAuto(DriveSubsystem* drive, ShooterSubsystem* shooter, IndexerSubsystem* indexer);
 };
 
 /**
@@ -39,5 +43,5 @@ class RightAuto
    *
    * @param drive The drive subsystem this command will run on
    */
-  RightAuto(DriveSubsystem* drive);
+  RightAuto(DriveSubsystem* drive, ShooterSubsystem* shooter, IndexerSubsystem* indexer);
 };
