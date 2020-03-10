@@ -32,6 +32,6 @@ class RumbleIfClose
   bool IsFinished() override;
 
  private:
-  DriveSubsystem* m_drive;
   frc::XboxController* m_controller;
+  DriveSubsystem* m_drive;
 };
