@@ -1,0 +1,57 @@
+See file:///C:/Users/habig/Documents/GitHub/2020-commandRobot/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling IndexerBackward.cpp successful.
+
+compiling ExtendIntake.cpp successful.
+
+compiling IndexerForward.cpp successful.
+
+compiling DriveStraight.cpp successful.
+
+compiling DriveDistance.cpp successful.
+
+compiling DefaultDrive.cpp successful.
+
+compiling Autos.cpp successful.
+
+compiling RumbleIfClose.cpp successful.
+In file included from C:\Users\habig\Documents\GitHub\2020-commandRobot\src\main\cpp\commands\RumbleIfClose.cpp:8:0:
+C:\Users\habig\Documents\GitHub\2020-commandRobot\src\main\include/commands/RumbleIfClose.h: In constructor 'RumbleIfClose::RumbleIfClose(frc::XboxController*, DriveSubsystem*)':
+C:\Users\habig\Documents\GitHub\2020-commandRobot\src\main\include/commands/RumbleIfClose.h:36:24: warning: 'RumbleIfClose::m_controller' will be initialized after [-Wreorder]
+   frc::XboxController* m_controller;
+                        ^~~~~~~~~~~~
+C:\Users\habig\Documents\GitHub\2020-commandRobot\src\main\include/commands/RumbleIfClose.h:35:19: warning:   'DriveSubsystem* RumbleIfClose::m_drive' [-Wreorder]
+   DriveSubsystem* m_drive;
+                   ^~~~~~~
+C:\Users\habig\Documents\GitHub\2020-commandRobot\src\main\cpp\commands\RumbleIfClose.cpp:12:1: warning:   when initialized here [-Wreorder]
+ RumbleIfClose::RumbleIfClose(frc::XboxController* controller,
+ ^~~~~~~~~~~~~
+
+compiling SetLimelightPipeline.cpp successful.
+
+compiling ShooterShoot.cpp successful.
+
+compiling ShooterUnjam.cpp successful.
+
+compiling ShooterStop.cpp successful.
+
+compiling SpitIntake.cpp successful.
+
+compiling TurnToAngle.cpp successful.
+
+compiling IntakeSubsystem.cpp successful.
+
+compiling IndexerSubsystem.cpp successful.
+
+compiling DriveSubsystem.cpp successful.
+
+compiling ShooterSubsystem.cpp successful.
+
+compiling RetractIntake.cpp successful.
+
+compiling Robot.cpp successful.
+
+compiling RobotContainer.cpp successful.
+
+compiling IndexerStop.cpp successful.
+
+Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/habig/Documents/GitHub/2020-commandRobot/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.
