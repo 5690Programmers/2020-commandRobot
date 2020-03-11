@@ -9,27 +9,31 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/controller/PIDController.h>
 
 #include "subsystems/DriveSubsystem.h"
 
-class SetLimelightPipeline
-    : public frc2::CommandHelper<frc2::CommandBase, SetLimelightPipeline> {
+/**
+ * A command that will turn the robot to the limelight's target
+ */
+class TurnToLimelight : public frc2::CommandHelper<frc2::CommandBase, TurnToLimelight> {
  public:
   /**
-   * Creates a new SetLimelightPipeline.
+   * Turns to robot to where the limelight is pointing
    *
-   * @param pipeline Which pipeline to use: 0 = targetting, 1 = camera
-   * @param drive The drive subsystem on which this command will run
+   * @param drive              The drive subsystem to use
    */
-  SetLimelightPipeline(int pipeline, DriveSubsystem* subsystem);
+  explicit TurnToLimelight(DriveSubsystem* drive);
 
   void Initialize() override;
+
+  void Execute() override;
 
   void End(bool interrupted) override;
 
   bool IsFinished() override;
 
- private:
-  DriveSubsystem* m_drive;
-  int m_pipeline;
+  private:
+    DriveSubsystem* m_drive;
+    frc2::PIDController m_controller{0,0,0};  // make a default controller, we'll configure it later
 };

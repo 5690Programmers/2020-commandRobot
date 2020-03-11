@@ -22,7 +22,7 @@
 #include "commands/ShooterShoot.h"
 #include "commands/ShooterStop.h"
 #include "commands/ShooterUnjam.h"
-#include "commands/SetLimelightPipeline.h"
+#include "commands/TurnToLimelight.h"
 #include "commands/TurnToAngle.h"
 
 #include "Constants.h"
@@ -94,13 +94,9 @@ void RobotContainer::ConfigureButtonBindings() {
   if (Xbox.GetY(frc::XboxController::JoystickHand(frc::XboxController::kRightHand))>.2){}
   // this logic will need Camden's explanation to implement
 
-  // limelight aiming.  ParallelRaceGroup ends all of the commands when the first one exits
-  // we want that so the TurnToAngle can complete and switch off the limelight
+  // limelight aiming.  
   frc2::JoystickButton(&Xbox, Button::kBumperRight)
-      .WhenHeld(frc2::ParallelRaceGroup{SetLimelightPipeline(0,&m_drive),
-                                         TurnToAngle(m_drive.GetLimelightTargetAngle(), &m_drive).WithTimeout(2_s)
-                                        })
-                                        .WhenReleased(SetLimelightPipeline(1,&m_drive)); // make sure LED is off
+      .WhenHeld(TurnToLimelight(&m_drive).WithTimeout(2_s));
 
   // unjam things
   // Run indexer and shooter backwards.  ParallelCommandGroup finishes when all of the commands finish

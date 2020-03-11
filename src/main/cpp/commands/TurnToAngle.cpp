@@ -13,7 +13,8 @@
 
 // code based on this example
 // https://github.com/wpilibsuite/allwpilib/tree/master/wpilibcExamples/src/main/cpp/examples/GyroDriveCommands
-
+// This uses the lambda in the constructor to do everything.  Ick.
+// trying to write it out more carefully in the limelight version, let's see if that works
 TurnToAngle::TurnToAngle(units::degree_t target, DriveSubsystem* drive)
     : CommandHelper(frc2::PIDController(kTurnP, kTurnI, kTurnD),
                     // Close loop on heading

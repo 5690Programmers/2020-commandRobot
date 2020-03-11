@@ -13,8 +13,8 @@
 #include <frc2/command/ParallelCommandGroup.h>
 
 #include "commands/TurnToAngle.h"
+#include "commands/TurnToLimelight.h"
 #include "commands/DriveStraight.h"
-#include "commands/SetLimelightPipeline.h"
 #include "commands/ShooterShoot.h"
 #include "commands/IndexerForward.h"
 #include "commands/IndexerForwardCheckRPM.h"
