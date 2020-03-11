@@ -10,7 +10,11 @@
 SetLimelightPipeline::SetLimelightPipeline(int pipeline,
                              DriveSubsystem* subsystem)
     : m_drive(subsystem), m_pipeline(pipeline) {
-  AddRequirements({subsystem});
+// this command only reads a limelight value from the drive
+// So, while it "requires" the drive to exist, we don't mind if
+// it runs at the same time as other drive things.  
+// So, commenting this out.
+//  AddRequirements({subsystem});
 }
 
 void SetLimelightPipeline::Initialize() {
