@@ -18,7 +18,7 @@ ShooterSubsystem::ShooterSubsystem() {
   ShooterFollow.Follow(Shooter);
 
 // PID stuff for shooter
-// all sorts of constants in here to move out to Constants.h
+// This runs on the Talon
   Shooter.ConfigFactoryDefault();
 
   Shooter.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10); 
@@ -30,10 +30,10 @@ ShooterSubsystem::ShooterSubsystem() {
   Shooter.ConfigPeakOutputForward(1,10);
   Shooter.ConfigPeakOutputReverse(-1,10);
   
-  Shooter.Config_kF(0, 0.1097, 10);
-  Shooter.Config_kP(0, 0.22, 10);
-  Shooter.Config_kI(0, 0.0, 10);
-  Shooter.Config_kD(0, 0.0, 10);
+  Shooter.Config_kF(0, kShootF, 10);
+  Shooter.Config_kP(0, kShootP, 10);
+  Shooter.Config_kI(0, kShootI, 10);
+  Shooter.Config_kD(0, kShootD, 10);
 }
 
 // Methods
@@ -46,7 +46,7 @@ void ShooterSubsystem::Periodic() {
 }
 
 void ShooterSubsystem::Shoot() {
-    Shooter.Set(ControlMode::Velocity, 2500);
+    Shooter.Set(ControlMode::Velocity, kTargetRPM);
 }
 
 void ShooterSubsystem::Unjam() {

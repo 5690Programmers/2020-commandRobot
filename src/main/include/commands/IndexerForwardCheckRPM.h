@@ -7,31 +7,30 @@
 
 #pragma once
 
-#include <frc/XboxController.h>
-
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/DriveSubsystem.h"
+#include "subsystems/IndexerSubsystem.h"
 
-class RumbleIfClose
-    : public frc2::CommandHelper<frc2::CommandBase, RumbleIfClose> {
+/**
+ * A simple command that runs IndexerSubsystem forwards.  Written
+ * explicitly for pedagogical purposes.  Actual code should inline a command
+ * this simple with InstantCommand.
+ *
+ * @see InstantCommand
+ */
+class IndexerForwardCheckRPM : public frc2::CommandHelper<frc2::CommandBase, IndexerForwardCheckRPM> {
  public:
-  /**
-   * Creates a new RumbleIfClose.
-   *
-   * @param controller the xbox controller to rumble
-   * @param drive The drive subsystem on which this command will run
-   */
-  RumbleIfClose(frc::XboxController* controller, DriveSubsystem* subsystem);
+  explicit IndexerForwardCheckRPM(IndexerSubsystem* subsystem);
 
   void Initialize() override;
 
-  void End(bool interrupted) override;
+  void Execute() override;
 
   bool IsFinished() override;
 
+  void End(bool interrupted) override;
+
  private:
-  frc::XboxController* m_controller;
-  DriveSubsystem* m_drive;
+  IndexerSubsystem* m_indexer;
 };

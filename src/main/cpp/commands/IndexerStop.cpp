@@ -14,5 +14,6 @@ IndexerStop::IndexerStop(IndexerSubsystem* subsystem) : m_indexer(subsystem) {
 void IndexerStop::Initialize() { m_indexer->Stop(); }
 
 // this is a state, it lasts till it's cancelled
+// It is also the default state, so needs to run forever
 // although we could check if we hit an electic eye
 bool IndexerStop::IsFinished() { return false; }

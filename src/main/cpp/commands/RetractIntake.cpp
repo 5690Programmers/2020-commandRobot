@@ -14,5 +14,6 @@ RetractIntake::RetractIntake(IntakeSubsystem* subsystem) : m_intake(subsystem) {
 void RetractIntake::Initialize() { m_intake->Retract(); }
 
 // this is a state, it lasts till it's cancelled
+// It is also the default command, so needs to run forever
 // although we could check if the piston is all the way in
 bool RetractIntake::IsFinished() { return false; }

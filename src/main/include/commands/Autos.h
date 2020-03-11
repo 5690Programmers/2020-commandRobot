@@ -17,6 +17,7 @@
 #include "commands/SetLimelightPipeline.h"
 #include "commands/ShooterShoot.h"
 #include "commands/IndexerForward.h"
+#include "commands/IndexerForwardCheckRPM.h"
 
 /**
  * An auto for starting on the left

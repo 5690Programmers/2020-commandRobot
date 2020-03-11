@@ -9,6 +9,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/XboxController.h>
 
 #include "subsystems/ShooterSubsystem.h"
 
@@ -21,12 +22,17 @@
  */
 class ShooterShoot : public frc2::CommandHelper<frc2::CommandBase, ShooterShoot> {
  public:
-  explicit ShooterShoot(ShooterSubsystem* subsystem);
+  explicit ShooterShoot(ShooterSubsystem* subsystem, frc::XboxController* controller);
 
   void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
 
   bool IsFinished() override;
 
  private:
   ShooterSubsystem* m_shooter;
+  frc::XboxController* m_controller;
 };

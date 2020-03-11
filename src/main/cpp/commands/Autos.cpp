@@ -19,10 +19,10 @@ LeftAuto::LeftAuto(DriveSubsystem* drive, ShooterSubsystem * shooter, IndexerSub
       // aim with limelight: turn on light and turn to target at same time
       frc2::ParallelRaceGroup{SetLimelightPipeline(0,drive),
                               TurnToAngle(drive->GetLimelightTargetAngle(), drive).WithTimeout(2_s)},
-      // rev up shooter
-      ShooterShoot(shooter).WithTimeout(1_s),
+      // rev up shooter.  This is the simple, brute force way to shoot
+      ShooterShoot(shooter,NULL).WithTimeout(1_s),
       // run indexer and shooter at the same time
-      frc2::ParallelCommandGroup{ShooterShoot(shooter).WithTimeout(1_s),
+      frc2::ParallelCommandGroup{ShooterShoot(shooter,NULL).WithTimeout(1_s),
                                  IndexerForward(indexer).WithTimeout(1_s)},
       // turn around 180_deg.  Timeout here is in case it doesn't settle in 2s
       TurnToAngle(180_deg, drive).WithTimeout(2_s),
@@ -35,6 +35,14 @@ RightAuto::RightAuto(DriveSubsystem* drive, ShooterSubsystem * shooter, IndexerS
   AddCommands(
       // Drive back the specified time.  Positive power really is backwards
       DriveStraight(0.6, drive).WithTimeout(1_s),
+      // aim with limelight: turn on light and turn to target at same time
+      // also start to spin up shooter
+      frc2::ParallelRaceGroup{SetLimelightPipeline(0,drive),
+                              ShooterShoot(shooter,NULL),
+                              TurnToAngle(drive->GetLimelightTargetAngle(), drive).WithTimeout(2_s)},
+      // Let's try a smarter shooting, where we check if we're at the right rpm and run the indexer
+      frc2::ParallelCommandGroup{ShooterShoot(shooter,NULL).WithTimeout(1_s),
+                                 IndexerForwardCheckRPM(indexer).WithTimeout(1_s)},
       // turn around 180_deg.  Timeout here is in case it doesn't settle in 2s
       TurnToAngle(90_deg, drive).WithTimeout(2_s)
   );

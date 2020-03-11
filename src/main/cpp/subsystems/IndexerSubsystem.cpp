@@ -4,6 +4,8 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+#include <cmath>
+
 #include <frc/smartdashboard/Smartdashboard.h>
 
 #include "subsystems/IndexerSubsystem.h"
@@ -33,6 +35,14 @@ void IndexerSubsystem::Periodic() {
 
 void IndexerSubsystem::Forward() {
     IndexerB.Set(ControlMode::PercentOutput, -kIndexerSpeed);
+}
+
+void IndexerSubsystem::ForwardCheckRPM() {
+// get RPMs from network tables to avoid a ShooterSubsystem dependancy
+// Here we check that RPMS are within kRPM_OK on the low side.  Anything faster is ok
+// If you're worried about goign to fast, change this calculation
+    if ((frc::SmartDashboard::GetNumber("RPM",0.0) + kRPM_OK) >= kTargetRPM) 
+        IndexerB.Set(ControlMode::PercentOutput, -kIndexerSpeed);
 }
 
 void IndexerSubsystem::Backward() {

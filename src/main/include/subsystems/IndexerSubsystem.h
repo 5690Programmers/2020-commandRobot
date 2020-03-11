@@ -31,6 +31,11 @@ class IndexerSubsystem : public frc2::SubsystemBase {
   void Forward();
 
   /**
+   * Move balls towards the shooter only if the shooter RPM is close to target
+   */
+  void ForwardCheckRPM();
+
+  /**
    * Move balls away from the shooter, towards the intake
    */
   void Backward();

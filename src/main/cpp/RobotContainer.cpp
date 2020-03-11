@@ -24,7 +24,6 @@
 #include "commands/ShooterUnjam.h"
 #include "commands/SetLimelightPipeline.h"
 #include "commands/TurnToAngle.h"
-#include "commands/RumbleIfClose.h"
 
 #include "Constants.h"
 
@@ -78,9 +77,7 @@ void RobotContainer::ConfigureButtonBindings() {
 
   // Spin up shooter motor while pressed, and rumble controller if you're too close
   frc2::JoystickButton(&Xbox, Button::kB)
-      .WhenHeld(frc2::ParallelRaceGroup{ShooterShoot(&m_shooter),
-                                         RumbleIfClose(&Xbox, &m_drive)
-                                        });
+      .WhenHeld(ShooterShoot(&m_shooter, &Xbox));
 
   // move intake arm out and spin intake wheels while A is held down,
   // return arm and stop when you let go. (the default mode for Intake)
